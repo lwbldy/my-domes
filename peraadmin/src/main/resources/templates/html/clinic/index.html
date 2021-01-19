@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="ie ie6 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 7]><html class="ie ie7 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lt9 lt10"><![endif]-->
+<!--[if IE 9]><html class="ie ie9 lt10"><![endif]-->
+<!--[if (gt IE 9) | !(IE)]><!-->
+    <html xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<head>
+    <th:block th:include="include :: headhtml('寻找诊所')"/>
+</head>
+
+<body>
+<div class="body-box clinic-box dental-box">
+
+    <header class="header">
+        <th:block th:include="include :: headerhtml(4)"/>
+    </header>
+
+    <section class="main-box">
+        <div class="wrap">
+            <div class="postion f-12">您现在的位置：
+                <a href="index.html">首页</a> > <a href="">寻找诊所</a>
+                <a href="javascript:;" class="J_getcur"></a>
+            </div>
+
+            <div class="top-nav">
+                <div class="list-box">
+                    <div class="btn-box">
+                        <a class="back auto-bg over"
+                           style="background-image: url(/static/image/dental_icon_left.png);" href="#"></a>
+                        <a class="next auto-bg" style="background-image: url(/static/image/dental_icon_right.png);"
+                           href="#"></a>
+                    </div>
+                    <div class="swiper-container J_getmenu">
+                        <ul class="cf swiper-wrapper f-16">
+                            <li th:each="region,regionStat:${regionList}"  class="swiper-slide  swiper-slide-visible" th:classappend="${#strings.trim(param.region) == region.dataValue} ? 'on swiper-slide-active' : ''">
+                                <a th:href="@{/html/clinic(region=${region.dataValue})}" target="_self">
+                                    <span>
+                                        <i>
+                                            <img class="ratio-img" data-ratio="1" onerror="lod(this)" th:src="@{/static/image/1492242929b03079389c00c895.png}">
+                                            <img class="ratio-img" data-ratio="1" onerror="lod(this)" th:src="@{/static/image/1492242929346b460f4dd29b8b.png}" style="height: 20px;">
+                                        </i>
+                                        <label th:text="${region.dataLabel}"></label>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main">
+                <div class="ditu-box">
+<!--                    <div class="ratio-img" id="allmap" style="height:550px;" data-ratio="0.365832614322692"></div>-->
+                    <div style="postion:ralative;">
+                        <a onclick="fh()" id="fh" style="display:block;color:00f;margin-top:-10px;margin-bottom:10px;cursor:pointer;display:none;">>返回主图<</a>
+                        <iframe th:src="${mapURL}" frameborder="0" style="width:100%;height:550px;overflow:hidden;"></iframe>
+                    </div>
+                </div>
+
+                <div class="top-box cf J_getinfo">
+
+                </div>
+
+                <div class="line-dashed"></div>
+
+                <div class="list-box J_getlist">
+                    <ul class="cf putong">
+
+                        <li th:each="clinic,clinciStat:${pageInfo.list}">
+                            <div class="list">
+                                <div class="content-box">
+                                    <div class="img-box">
+                                        <a th:href="@{/html/clinic/details(id=${clinic.id})}" target="_self">
+                                            <img class="ratio-img" data-ratio="0.7514619883040936"
+                                                 th:src="@{'/html/advertIMG/'+${clinic.pic}}" onerror="lod(this)" style="height: 302px;">
+                                        </a>
+                                    </div>
+
+                                    <div class="content">
+                                        <a th:href="@{/html/clinic/details(id=${clinic.id})}">
+                                            <p class="title f-20 c333" th:text="${clinic.clinicName}"></p>
+                                        </a>
+                                        <p class="text c666 f-14">
+                                            <span class="ellipsis-2" th:text="'地址：'+${clinic.address}">地址：</span>
+                                            <span th:text="'电话：'+${clinic.telephone}">电话：</span>
+                                        </p>
+                                        <div class="btn-box">
+                                            <a class="f-14 c333" th:href="@{/html/clinic/details(id=${clinic.id})}">了解详情 &gt;</a>
+                                            <a th:href="@{/html/clinic/detils(id=${clinic.id})}"><img class="ratio-img" data-ratio="0.8378378378378378" onerror="lod(this)" src="/images/clinic_icon08.png" style="height: 31px;"></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="page-box">
+                    <div class="page f-20" id="page5">
+                        <div class="laypage_main laypageskin_default">
+                            <a
+                                    th:if="${!pageInfo.isFirstPage}"
+                                    th:href="@{/html/clinic(page=${pageInfo.prePage},limit=${pageInfo.pageSize},region=${param.region})}" class="laypage_prev" > </a>
+                            <a
+                                    th:if="${!pageInfo.isLastPage}"
+                                    th:href="@{/html/clinic(page=${pageInfo.nextPage},limit=${pageInfo.pageSize},region=${param.region})}" class="laypage_next" > </a>
+                            <span class="laypage_total"><label>到第</label>
+                                <input type="number"
+                                       min="1"
+                                       id="tz"
+                                       th:value="${pageInfo.pageNum}"
+                                       class="laypage_skip">
+                                <label>页</label>
+                                <button type="button" class="laypage_btn" onclick="tz()">确定</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <th:block th:include="include :: footerhtml"/>
+    </footer>
+
+</div>
+
+
+
+<script>
+    imgratio();
+    getMuen();
+
+    function tz(){
+        var val = document.getElementById("tz").value;
+        var url = "/html/clinic?region=[[${param.region}]]&page="+val;
+        window.location.href=url;
+    }
+
+</script>
+
+</body>
+
+</html>

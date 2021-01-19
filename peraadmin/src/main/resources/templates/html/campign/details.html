@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="ie ie6 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 7]><html class="ie ie7 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lt9 lt10"><![endif]-->
+<!--[if IE 9]><html class="ie ie9 lt10"><![endif]-->
+<!--[if (gt IE 9) | !(IE)]><!--><html xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+<head>
+    <th:block th:include="include :: headhtml(${campign.title}+'详情-活动宣传-卫华口腔')"/>
+</head>
+
+<body class="search-body">
+<div class="body-box details-box campdata-box">
+
+    <header class="header">
+        <th:block th:include="include :: headerhtml(10)"/>
+    </header>
+
+    <section class="main-box">
+        <div class="wrap">
+
+            <div class="postion f-12">您现在的位置：
+                <a href="/">首页</a> >
+                <a href="/html/dental">礼品兑换</a> >
+                <a href="javascript:;">正文</a>
+            </div>
+
+            <div class="main">
+
+                <div class="top-title">
+                    <p class="title f-22 c333" th:text="${campign.title}">标题</p>
+                    <div class="content-box">
+                        <ul class="cf">
+                            <li>
+                                <p class="f-16"><span>活动时间：</span><em th:text="${campign.visitTime}"></em></p>
+                            </li>
+                            <li>
+                                <p class="f-16"><span>活动地点：</span><em th:text="${campign.visitAddress}"></em></p>
+                            </li>
+                        </ul>
+
+                        <div class="f-16 cf">
+                            <p class="fl">活动简介：</p>
+                            <p class="oh" th:text="${campign.synopsis}">周年感恩回馈</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="list-box" th:utext="${campign.context}"></div>
+            </div>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <th:block th:include="include :: footerhtml"/>
+    </footer>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

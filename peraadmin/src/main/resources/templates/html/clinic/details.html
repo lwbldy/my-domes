@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="ie ie6 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 7]><html class="ie ie7 lt8 lt9 lt10"><![endif]-->
+<!--[if IE 8]><html class="ie ie8 lt9 lt10"><![endif]-->
+<!--[if IE 9]><html class="ie ie9 lt10"><![endif]-->
+<!--[if (gt IE 9) | !(IE)]><!--><html xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
+<head>
+    <th:block th:include="include :: headhtml(${clinic.clinicName}+'详情-寻找诊所-卫华口腔')"/>
+</head>
+
+<body class="search-body">
+<div class="body-box cdeta-box">
+
+    <header class="header">
+        <th:block th:include="include :: headerhtml(4)"/>
+    </header>
+
+    <section class="main-box">
+        <div class="wrap">
+
+            <div class="postion f-12">您现在的位置：
+                <a href="/">首页</a> >
+                <a href="/html/dental">寻找诊所</a> >
+                <a href="javascript:;">正文</a>
+            </div>
+
+            <div class="main">
+
+                <div class="top">
+                    <p class="f-24" th:text="${clinic.clinicName}">卫华总部</p>
+                    <div class="content-box cf">
+                        <div class="img-box fl swiper-pic ratio-img oh" data-ratio="0.4822546972860125" style="height: 341px;">
+                            <div class="swiper-container">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide">
+                                        <img class="ratio-img"  onerror="lod(this)" th:src="@{'/html/advertIMG/'+${clinic.pic}}" alt="" style="height: 341px;">
+                                    </li>
+                                </ul>
+                                <div class="pagination"></div>
+                            </div>
+
+                        </div>
+                        <div class="text-box oh">
+                            <div class="text">
+                                <p class="f-16" style="font-size: 14px;" th:text="${clinic.details}"></p>
+                                <ul class="f-16" style="margin-top: 20px;font-size: 14px; ">
+                                    <li class="cf"><em class="fl">电　　话：</em><span class="f-28 oh" th:text="${clinic.telephone}">电话</span></li>
+                                    <li class="cf"><em class="fl">地　　址：</em><span class="oh" th:text="${clinic.address}">位置</span></li>
+                                    <li class="cf"><em class="fl">营业时间：</em><span class="oh" th:text="${clinic.openingHours}">9:30-18:00</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="icon-box">
+                        <ul class="cf f-14">
+                            <li><div class="icon"><i><img class="ratio-img" data-ratio="1" onerror="lod(this)" src="/static/image/14962210403dfb867ab90f9149.png" alt="" style="height: 24px;"></i>免费提供饮品和点心</div></li>
+                            <li><div class="icon"><i><img class="ratio-img" data-ratio="1" onerror="lod(this)" src="/static/image/14962210659c5490543196cb3f.png" alt="" style="height: 24px;"></i>免费WIFI</div></li>
+                            <li><div class="icon"><i><img class="ratio-img" data-ratio="1" onerror="lod(this)" src="/static/image/1496222416e2f193e736c0f60f.png" alt="" style="height: 24px;"></i>浏览室</div></li>
+                            <li><div class="icon"><i><img class="ratio-img" data-ratio="1" onerror="lod(this)" src="/static/image/1496221241cf2a212e4818f4d2.png" alt="" style="height: 24px;"></i>儿童区</div></li>
+                            <li><div class="icon"><i><img class="ratio-img" data-ratio="1" onerror="lod(this)" src="/static/image/1496221253fba37b367abc3f8c.png" alt="" style="height: 24px;"></i>温馨的就诊环境</div></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="yis-box J_getlist min-scorll-x">
+                    <!-- <div class="list-box"> -->
+                    <ul class="cf">
+                        <li th:each="doctor,doctorStat:${doctorList}">
+                            <div class="content-box">
+                                <div class="img-box">
+                                    <a th:href="@{/html/doctor/details(id=${doctor.id})}" target="_self">
+                                        <img th:src="@{'/html/advertIMG/'+${doctor.pic}}" class="ratio-img" data-ratio="1" onerror="lod(this)" alt="" style="height: 229px;">
+                                        <div class="img-text">
+                                            <p class="f-24" th:text="${doctor.username}">王伟</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="text-box">
+                                    <ul class="f-14">
+                                        <li class="ellipsis"><i><img src="/static/image/yi_15.jpg" data-ratio="1" class="ratio-img" onerror="lod(this)" alt="" style="height: 24px;"></i><em th:text="${doctor.job}">职位</em></li>
+                                        <li class="ellipsis"><i><img src="/static/image/yi_19.jpg" class="ratio-img" data-ratio="1" onerror="lod(this)" alt="" style="height: 24px;"></i><em th:text="${doctor.degree}">学士</em></li>
+                                        <li class="ellipsis"><i><img src="/static/image/yi_27.jpg" class="ratio-img" data-ratio="1" onerror="lod(this)" alt="" style="height: 24px;"></i><em th:text="${doctor.school}">北京大学口腔医学院</em></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="line"></div>
+
+                <div class="ditu-box">
+                    <div class="title-box cf">
+                        <p class="fl f-24">地址导航</p>
+                        <p class="fr f-14"><span><i><img class="ratio-img" data-ratio="0.8378378378378378" onerror="lod(this)" src="/static/image/clinic_icon08.png" style="height: 31px;"></i>查看路线</span></p>
+                    </div>
+                    <div class="ditu">
+                        <div id="allmap" class="ratio-img" data-ratio="0.42573402" style="width:100%;height:550px;overflow:hidden;display:none;"></div>
+                        <div style="postion:ralative;">
+                            <a onclick="fh()" id="fh" style="margin-top: -10px; margin-bottom: 10px; cursor: pointer;">&gt;返回主图&lt;</a>
+                            <iframe class="ratio-img" id="allmaps" style="width: 100%; height: 550px; overflow: hidden;" th:src="${mapURL}"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <footer class="footer">
+        <th:block th:include="include :: footerhtml"/>
+    </footer>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
